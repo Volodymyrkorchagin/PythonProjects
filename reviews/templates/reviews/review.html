@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Відгук</title>
+</head>
+<body>
+
+<h1>Форма відгуку 📱</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Відправити</button>
+</form>
+
+{% if result %}
+    <hr>
+    <h2>Ваш відгук:</h2>
+
+    <p><b>Нік:</b> {{ result.nickname }}</p>
+    <p><b>Email:</b> {{ result.email }}</p>
+    <p><b>Рейтинг:</b> {{ result.rating }} ⭐</p>
+    <p><b>Опис:</b> {{ result.review }}</p>
+{% endif %}
+
+</body>
+</html>
