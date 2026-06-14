@@ -1,0 +1,18 @@
+<h1>Рецензія на книгу</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Відправити</button>
+</form>
+
+<hr>
+
+{% if result %}
+    <h2>Результат:</h2>
+
+    <p><b>Нік:</b> {{ result.nickname }}</p>
+    <p><b>Рейтинг:</b> {{ result.rating }} / 100</p>
+    <p><b>Рецензія:</b> {{ result.review }}</p>
+    <p><b>Спойлери:</b> {{ result.spoilers }}</p>
+{% endif %}
