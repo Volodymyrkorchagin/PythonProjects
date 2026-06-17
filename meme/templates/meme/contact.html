@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f0f2f5;
+            border-radius: 10px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0f5bd3;
+        }
+
+        .topbar {
+            background: #111;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .topbar a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <a href="{% url 'main' %}">Home</a>
+    <a href="{% url 'add_meme' %}">Add Meme</a>
+    <a href="{% url 'contact' %}">Contact</a>
+</div>
+
+<div class="container">
+
+    <h1>📞 Contact Us</h1>
+
+    <div class="info">
+        <p><b>Email:</b> support@memes.com</p>
+        <p><b>Telegram:</b> @memes_support</p>
+        <p><b>Working time:</b> 24/7</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <input type="text" name="name" placeholder="Your name">
+        <input type="email" name="email" placeholder="Your email">
+        <textarea name="message" rows="5" placeholder="Your message"></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+</div>
+
+</body>
+</html>

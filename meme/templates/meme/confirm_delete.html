@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Удаление мема</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .danger {
+            background: red;
+            color: white;
+        }
+
+        .cancel {
+            background: gray;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Delete meme?</h2>
+
+    <img src="{{ meme.image.url }}">
+
+    <p>{{ meme.title }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn danger">Delete</button>
+    </form>
+
+    <br>
+
+    <a class="cancel" href="{% url 'main' %}">Cancel</a>
+</div>
+
+</body>
+</html>

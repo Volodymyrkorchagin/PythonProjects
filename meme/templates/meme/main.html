@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #121212;
+        }
+
+        .meme-card {
+            background: #1e1e1e;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.2s;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .meme-card:hover {
+            transform: scale(1.02);
+        }
+
+        .meme-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .meme-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .btn-like {
+            background: #ff3b3b;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #444;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .btn-like:hover { background: #ff1f1f; }
+        .btn-delete:hover { background: #666; }
+    </style>
+</head>
+
+<body class="text-white">
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h1 class="text-white m-0">Meme Feed</h1>
+
+    <div class="d-flex gap-2">
+        <a href="/add_meme/" class="btn btn-success">+ Add Meme</a>
+        <a href="/contact/" class="btn btn-info">Contact</a>
+    </div>
+
+</div>
+
+    <div class="row justify-content-center">
+
+        {% for meme in page_obj %}
+        <div class="col-md-4 d-flex justify-content-center mb-4">
+
+            <div class="meme-card">
+
+                <img src="{{ meme.image.url }}" class="meme-img">
+
+                <div class="meme-body">
+
+                    <h5>{{ meme.title }}</h5>
+
+                    <p>❤️ {{ meme.total_likes }}</p>
+
+                    <p class="text-muted">{{ meme.created_by }}</p>
+
+                    <div class="d-flex justify-content-center gap-2">
+
+                        <a href="{% url 'like_meme' meme.id %}">
+                            <button class="btn btn-danger">
+                                Like / Unlike
+                            </button>
+                        </a>
+
+                        <a href="{% url 'delete_meme' meme.id %}">
+                            <button class="btn-delete">Delete 🗑</button>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+
+            {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+            </li>
+            {% endif %}
+
+            <li class="page-item disabled">
+                <span class="page-link">
+                    Page {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+                </span>
+            </li>
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+            {% endif %}
+
+        </ul>
+    </nav>
+
+</div>
+
+</body>
+</html>
