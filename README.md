@@ -46,7 +46,7 @@ project/
 
 ## Installation
 
-git clone <repo_url>
+git clone <https://github.com/Volodymyrkorchagin/PythonProjects.git>
 
 cd memes_project
 
