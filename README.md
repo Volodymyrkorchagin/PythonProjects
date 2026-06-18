@@ -1,1 +1,1 @@
-Цель проекта — создать простое социальное приложение с базовыми функциями CRUD и авторизацией.
+The goal of the project is to create a simple social application with basic CRUD functionality and authorization.
