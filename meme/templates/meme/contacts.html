@@ -90,11 +90,7 @@
 
     <form method="post">
         {% csrf_token %}
-        
-        <input type="text" name="name" placeholder="Your name">
-        <input type="email" name="email" placeholder="Your email">
-        <textarea name="message" rows="5" placeholder="Your message"></textarea>
-
+        {{ form.as_p }}
         <button type="submit">Send Message</button>
     </form>
 

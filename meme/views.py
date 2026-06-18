@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Meme
-from .forms import MemeForm
+from .forms import MemeForm, ContactForm
 from django.core.paginator import Paginator
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
@@ -47,7 +47,15 @@ def delete_meme(request, meme_id):
     return render(request, 'meme/confirm_delete.html', {'meme': meme})
 
 def contact(request):
-    return render(request, 'meme/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contact')
+    else:
+        form = ContactForm()
+
+    return render(request, 'meme/contacts.html', {'form': form})
 
 @login_required
 def like_meme(request, pk):
