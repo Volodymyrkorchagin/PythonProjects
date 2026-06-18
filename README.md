@@ -16,7 +16,7 @@ This is a web application built with Django that allows users to view, upload, l
 - Django
 - SQLite
 - HTML/CSS
-- Bootstrap (if used)
+- Bootstrap
 
 ## Project Structure
 
